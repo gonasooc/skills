@@ -19,9 +19,14 @@ Or install the whole collection as a Claude Code plugin:
 /plugin install gonasooc-skills@gonasooc
 ```
 
-### Codex
+### Codex, Gemini CLI, and Antigravity
 
-The skills.sh installer above can target Codex directly — pick Codex when prompted. To install manually instead, copy (or symlink) a skill folder into Codex's skill locations: `~/.agents/skills/` (user-wide) or `.agents/skills/` inside a repository. Invoke with `$interviewer`, the `/skills` picker, or just ask in natural language.
+These skills follow the open [Agent Skills](https://agentskills.io) standard, so any compliant agent runs them unmodified.
+
+- **Codex** — the skills.sh installer above can target Codex directly: pick Codex when prompted.
+- **Gemini CLI / Google Antigravity / manual install** — copy (or symlink) a skill folder into the shared standard path: `~/.agents/skills/` (user-wide) or `.agents/skills/` inside a repository. Codex, Gemini CLI, and Antigravity all read this path for project skills. (Global skills live in each agent's own directory — e.g. `~/.gemini/skills/` for Gemini CLI — so check your agent's docs.)
+
+Invoke with `$interviewer`, the `/skills` picker, or just ask in natural language. Agent-specific files like `agents/openai.yaml` are ignored by agents that don't use them.
 
 ## Skills
 
