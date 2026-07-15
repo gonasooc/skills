@@ -1,0 +1,6 @@
+interface:
+  display_name: "Interviewer"
+  short_description: "Get grilled on your own repo or article"
+  default_prompt: "Interview me about this repository."
+policy:
+  allow_implicit_invocation: true

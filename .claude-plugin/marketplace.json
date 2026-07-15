@@ -1,0 +1,19 @@
+{
+  "name": "gonasooc",
+  "owner": {
+    "name": "gonasooc",
+    "url": "https://github.com/gonasooc"
+  },
+  "plugins": [
+    {
+      "name": "gonasooc-skills",
+      "source": "./",
+      "description": "Skills by gonasooc. Includes interviewer — an artifact-grounded technical interviewer that grills you on your own repo or article to repay cognitive debt.",
+      "version": "0.1.0",
+      "author": {
+        "name": "gonasooc",
+        "url": "https://github.com/gonasooc"
+      }
+    }
+  ]
+}
