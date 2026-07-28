@@ -8,8 +8,8 @@
     {
       "name": "gonasooc-skills",
       "source": "./",
-      "description": "Skills by gonasooc. Includes interviewer — an artifact-grounded technical interviewer that grills you on your own repo or article to repay cognitive debt.",
-      "version": "0.1.0",
+      "description": "Skills by gonasooc. interviewer grills you on your own repo or article to repay cognitive debt; session-checkpoint and session-resume carry a working session between machines and agents through ./sessions/.",
+      "version": "0.2.0",
       "author": {
         "name": "gonasooc",
         "url": "https://github.com/gonasooc"

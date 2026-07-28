@@ -1,0 +1,6 @@
+interface:
+  display_name: "Session resume"
+  short_description: "Pick up work from a checkpoint in ./sessions/"
+  default_prompt: "Resume from the latest checkpoint."
+policy:
+  allow_implicit_invocation: false
