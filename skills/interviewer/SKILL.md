@@ -25,7 +25,7 @@ You are interrogating the artifact, not editing it. **Never modify the source yo
 
 This is load-bearing, not just courtesy. Policy 1 makes the source your ground truth; alter it and your rebuttals no longer describe what the user shipped — and a bug you quietly fixed is a question you can no longer ask.
 
-The only writes a session makes are its own scaffolding — cloning a repo URL into a temp directory, saving fetched article text to your scratch directory, and writing the final report file. Never the artifact itself.
+The only writes a session makes are its own scaffolding — cloning a repo URL into a temp directory, saving fetched article text to a scratch directory, and writing the final report file **outside the artifact**. Never the artifact itself. Resolve the artifact boundary before prep: for a repository, use its canonical repository root; for an article, treat the saved source file as read-only. A new report file inside a repository is still a source modification and is forbidden.
 
 ## Session flow
 
@@ -33,7 +33,7 @@ The only writes a session makes are its own scaffolding — cloning a repo URL i
 
 Identify the artifact — one per session:
 
-- **Repository** — a local path or a git URL. For a URL, run `git clone --depth 1 <url>` into a temporary directory. Confirm the path exists and is readable before prep.
+- **Repository** — a local path or a git URL. For a URL, run `git clone --depth 1 <url>` into a temporary directory. Confirm the path exists and is readable, resolve its canonical repository root, and retain that root as the no-write boundary for the entire interview.
 - **Article** — a URL. Fetch it and immediately save the verbatim text to a local file in your temp/scratch directory; every later quote and Policy-1 check runs against that file, not against your memory of the fetch. If the fetch returns partial, paywalled, or JS-stub content, say so and ask the user to paste the full text — do not interview against a fragment.
 - **Ambiguous URL** — if git can clone it, it is a repository; anything else is an article. A URL pointing at a single document inside a repo: ask the user which one is the interview subject.
 
@@ -82,7 +82,13 @@ The session ends when the user says so — "end interview", "wrap up", "그만",
 - **Solid ground** — themes where the answers held up.
 - **Unasked attack points** — the parts of the attack-surface map the interview never reached. *Always include this section, even when it is empty.* An early exit must be visible in the ledger: a fifteen-minute session leaves its unasked questions on the record.
 
-Render the report in the conversation **and** write it to a file the user can revisit: `interview-YYYY-MM-DD-<artifact-slug>.md` in the current working directory (use the shell to get the date).
+Render the report in the conversation **and** write it to a file the user can revisit. Use a collision-resistant name such as `interview-YYYY-MM-DD-HHmmss-<artifact-slug>.md`, obtaining the timestamp from the shell.
+
+Choose the destination before writing:
+
+1. If the current working directory is outside the artifact boundary, write there.
+2. If it is inside the repository being interviewed, write to a scratch or temporary directory outside that repository and say clearly that the location is temporary. Offer to save another copy later only to a user-approved path outside the artifact.
+3. Check that the final path does not already exist. If it does, add a numeric suffix; never overwrite an earlier report.
 
 ## Tone
 

@@ -26,7 +26,7 @@ These skills follow the open [Agent Skills](https://agentskills.io) standard, so
 - **Codex** — the skills.sh installer above can target Codex directly: pick Codex when prompted.
 - **Gemini CLI / Google Antigravity / manual install** — copy (or symlink) a skill folder into the shared standard path: `~/.agents/skills/` (user-wide) or `.agents/skills/` inside a repository. Codex, Gemini CLI, and Antigravity all read this path for project skills. (Global skills live in each agent's own directory — e.g. `~/.gemini/skills/` for Gemini CLI — so check your agent's docs.)
 
-Invoke a skill by name — `/interviewer` in Claude Code, `$interviewer` in Codex — or pick it from `/skills`. `interviewer` also responds to a plain natural-language request; `session-checkpoint` and `session-resume` do not, because they are [explicitly invoked only](#working-across-machines). Agent-specific files like `agents/openai.yaml` are ignored by agents that don't use them.
+Invoke a directly installed skill by name — `/interviewer` in Claude Code or `$interviewer` in Codex — or use the product's skill picker. Claude Code namespaces plugin skills, so the plugin form is `/gonasooc-skills:interviewer`. `interviewer` also responds to a plain natural-language request; `session-checkpoint` and `session-resume` act only after a direct request or explicit invocation. Agent-specific files like `agents/openai.yaml` are ignored by agents that don't use them.
 
 ## Skills
 
@@ -42,16 +42,16 @@ Invoke a skill by name — `/interviewer` in Claude Code, `$interviewer` in Code
 
 ```
 sessions/
-├── 2026-07-28-1432-auth-retry.md      # a moment — superseded by the next checkpoint
+├── 2026-07-28-143215-auth-retry.md    # a moment — superseded by the next checkpoint
 └── decisions/
-    └── 2026-07-28-token-in-memory.md  # a constraint — stands until superseded
+    └── 2026-07-28-143208-token-in-memory.md  # a constraint — stands until superseded
 ```
 
 The split matters because the two have different lifetimes. A checkpoint expires the moment work moves on; a decision keeps binding, and burying it in a file named after a Tuesday in July means the next session re-litigates it. `session-resume` reads the decisions and reports which still stand.
 
-Both directories are append-only, and decision records are dated rather than numbered like classic ADRs. Sequence numbers need a central allocator — two machines working offline both reach for `004-` and collide on the next pull. Superseding is a forward link on the new record; the old file is never edited.
+Both directories are append-only, and records use second-resolution timestamps rather than sequence numbers like classic ADRs. Sequence numbers need a central allocator — two machines working offline both reach for `004-`. A pre-write existence check prevents local overwrites, while the timestamp reduces (but cannot mathematically eliminate) cross-machine filename collisions. Superseding is a forward link on the new record; the old file is never edited.
 
-Both are **explicitly invoked only** (`disable-model-invocation`, and `allow_implicit_invocation: false` for Codex). No agent decides on its own that a session is worth recording — `sessions/` stays free of sessions you didn't choose to keep.
+Both are **explicitly invoked only**. Each skill starts with an invocation gate and stops if an agent loaded it merely because the surrounding conversation looked relevant; Codex additionally enforces this at the host level with `allow_implicit_invocation: false`. No agent decides on its own that a session is worth recording — `sessions/` stays free of sessions you didn't choose to keep.
 
 Neither skill commits or pushes: `session-checkpoint` writes the file and stops, so a checkpoint reaches your other machine only once you commit and push it yourself.
 

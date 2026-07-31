@@ -1,7 +1,8 @@
 {
   "name": "gonasooc-skills",
   "description": "Skills by gonasooc. interviewer grills you on your own repo or article to repay cognitive debt; session-checkpoint and session-resume carry a working session between machines and agents through ./sessions/.",
-  "version": "0.2.0",
+  "version": "0.2.1",
+  "license": "MIT",
   "author": {
     "name": "gonasooc",
     "url": "https://github.com/gonasooc"
