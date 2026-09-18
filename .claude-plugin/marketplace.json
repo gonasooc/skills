@@ -1,6 +1,6 @@
 {
   "name": "gonasooc",
-  "description": "Artifact-grounded skills for technical interviews and durable cross-machine session handoffs.",
+  "description": "Artifact-grounded skills for technical interviews.",
   "owner": {
     "name": "gonasooc",
     "url": "https://github.com/gonasooc"
@@ -9,7 +9,7 @@
     {
       "name": "gonasooc-skills",
       "source": "./",
-      "description": "Skills by gonasooc. interviewer grills you on your own repo or article to repay cognitive debt; session-checkpoint and session-resume carry a working session between machines and agents through ./sessions/.",
+      "description": "Skills by gonasooc. interviewer grills you on your own repo or article to repay cognitive debt.",
       "version": "0.2.1",
       "author": {
         "name": "gonasooc",

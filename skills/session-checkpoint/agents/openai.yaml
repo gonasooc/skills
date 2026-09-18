@@ -1,6 +1,0 @@
-interface:
-  display_name: "Session Checkpoint"
-  short_description: "Save this session for another machine or agent"
-  default_prompt: "Use $session-checkpoint to save a verified checkpoint for this session."
-policy:
-  allow_implicit_invocation: false
