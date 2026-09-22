@@ -1,7 +1,7 @@
 {
   "name": "gonasooc-skills",
-  "description": "Skills by gonasooc. interviewer grills you on your own repo or article to repay cognitive debt.",
-  "version": "0.2.1",
+  "description": "Skills by gonasooc. interviewer grills you on your own repo or article to repay cognitive debt; commit writes commits in the convention the repository already uses.",
+  "version": "0.3.0",
   "license": "MIT",
   "author": {
     "name": "gonasooc",

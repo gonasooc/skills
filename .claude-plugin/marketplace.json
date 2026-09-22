@@ -1,6 +1,6 @@
 {
   "name": "gonasooc",
-  "description": "Artifact-grounded skills for technical interviews.",
+  "description": "Agent skills that read the artifact before they act, and say what they could not verify.",
   "owner": {
     "name": "gonasooc",
     "url": "https://github.com/gonasooc"
@@ -9,8 +9,8 @@
     {
       "name": "gonasooc-skills",
       "source": "./",
-      "description": "Skills by gonasooc. interviewer grills you on your own repo or article to repay cognitive debt.",
-      "version": "0.2.1",
+      "description": "Skills by gonasooc. interviewer grills you on your own repo or article to repay cognitive debt; commit writes commits in the convention the repository already uses.",
+      "version": "0.3.0",
       "author": {
         "name": "gonasooc",
         "url": "https://github.com/gonasooc"
