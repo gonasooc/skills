@@ -174,6 +174,10 @@ Then stop and wait. The user has three moves; handle each without improvising:
 - **Edit** — any correction to the message, the ticket key, the time, or the file list. Apply it, then **present the revised block and wait again.** A revision is never self-approving, however small it looks.
 - **Cancel** — stop. Leave the working tree and the index exactly as found, and say plainly that nothing was committed.
 
+**Ask with a selection prompt when the agent has one** — in Claude Code that is `AskUserQuestion`, whose options are picked with the arrow keys, so approving costs a keypress instead of a typed sentence. Offer those three and no more: Claude Code appends a free-text choice of its own, and that is where an edit gets typed. Agents without such a tool ask in plain text. The gate is what matters, not the widget.
+
+The prompt does not replace showing the message. Option labels are a few words long and cannot carry a commit message — print the block above first, then ask.
+
 If the reply is ambiguous, ask again. Never resolve an ambiguity in favour of committing.
 
 On approval: stage the explicit paths (`git add -- <path> ...`), then commit by piping the message rather than inlining it, so that Korean text, quotes, and `#` survive intact:
@@ -202,7 +206,7 @@ Report the short SHA and the subject.
 
 - `git push -u origin <branch>` for a branch with no upstream; plain `git push` when it has one
 - **Never `--force`.** `--force-with-lease` only when the user asks for it by name and says why
-- If the current branch is the default branch, confirm before pushing — say that out loud rather than assuming the answer
+- If the current branch is the default branch, confirm before pushing — using the same selection prompt as step 8 where one exists. Say it out loud rather than assuming the answer
 - Report the result, including the remote branch URL when the host prints one
 
 ## When something is off

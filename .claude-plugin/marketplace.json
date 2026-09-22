@@ -10,7 +10,7 @@
       "name": "gonasooc-skills",
       "source": "./",
       "description": "Skills by gonasooc. interviewer grills you on your own repo or article to repay cognitive debt; commit writes commits in the convention the repository already uses.",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "author": {
         "name": "gonasooc",
         "url": "https://github.com/gonasooc"
